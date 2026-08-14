@@ -2,7 +2,7 @@
 
 A full-stack CRUD application built with MongoDB, Express, Angular, and Node.js (MEAN).
 
-Companion code for the [MEAN Stack Tutorial](https://www.mongodb.com/languages/mean-stack-tutorial?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel).
+Companion code for the [MEAN Stack Tutorial](https://www.mongodb.com/languages/mean-stack-tutorial?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel).
 
 [![CI](https://github.com/mongodb-developer/mean-stack-example/actions/workflows/ci.yml/badge.svg)](https://github.com/mongodb-developer/mean-stack-example/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -53,7 +53,7 @@ server/   # Express API + MongoDB integration
 
 - Node.js ^24.18.0
 - npm ^11.16.0
-- A local MongoDB instance or a free [MongoDB Atlas](https://www.mongodb.com/atlas?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel) cluster
+- A local MongoDB instance or a free [MongoDB Atlas](https://www.mongodb.com/atlas?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel) cluster
 
 ## Quick Start and MongoDB Setup
 
@@ -82,7 +82,7 @@ DATABASE_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/
 PORT=5300
 ```
 
-If you are new to Atlas, use the [Atlas quick start guide](https://www.mongodb.com/docs/atlas/getting-started/?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel) and then paste your connection string into `DATABASE_URI`.
+If you are new to Atlas, use the [Atlas quick start guide](https://www.mongodb.com/docs/atlas/getting-started/?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel) and then paste your connection string into `DATABASE_URI`.
 
 Optional: seed sample data:
 
@@ -140,10 +140,10 @@ Example request body for create or update:
 
 | Feature | Where |
 |---|---|
-| [MongoDB Node.js Driver](https://www.mongodb.com/docs/drivers/node/current/?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel) | `server/src/database.ts` |
-| [CRUD operations](https://www.mongodb.com/docs/manual/crud/?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel) | `server/src/employee.routes.ts` |
-| [MongoDB schema validation](https://www.mongodb.com/docs/manual/core/schema-validation/?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel) | startup validation in `server/src/database.ts` |
-| [Environment-based connection setup](https://www.mongodb.com/docs/drivers/node/current/fundamentals/connection/connect/?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel) | `DATABASE_URI` in `server/.env` |
+| [MongoDB Node.js Driver](https://www.mongodb.com/docs/drivers/node/current/?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel) | `server/src/database.ts` |
+| [CRUD operations](https://www.mongodb.com/docs/manual/crud/?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel) | `server/src/employee.routes.ts` |
+| [MongoDB schema validation](https://www.mongodb.com/docs/manual/core/schema-validation/?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel) | startup validation in `server/src/database.ts` |
+| [Environment-based connection setup](https://www.mongodb.com/docs/drivers/node/current/fundamentals/connection/connect/?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel) | `DATABASE_URI` in `server/.env` |
 
 ## Troubleshooting
 
@@ -151,7 +151,7 @@ Example request body for create or update:
 
 - Verify `DATABASE_URI` in `server/.env`
 - Confirm your database user credentials are correct (Atlas)
-- Confirm your IP is in [Atlas Network Access](https://www.mongodb.com/docs/atlas/security/ip-access-list/?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel)
+- Confirm your IP is in [Atlas Network Access](https://www.mongodb.com/docs/atlas/security/ip-access-list/?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel)
 
 ### Backend fails to start
 
@@ -176,9 +176,9 @@ Example request body for create or update:
 
 ## Additional Resources
 
-- [MEAN Stack Tutorial](https://www.mongodb.com/languages/mean-stack-tutorial?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel)
-- [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel)
-- [MongoDB Node.js Driver Docs](https://www.mongodb.com/docs/drivers/node/current/?utm_campaign=devrel&utm_medium=github&utm_content=mean.stack.example&utm_term=learning.fuel)
+- [MEAN Stack Tutorial](https://www.mongodb.com/languages/mean-stack-tutorial?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel)
+- [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel)
+- [MongoDB Node.js Driver Docs](https://www.mongodb.com/docs/drivers/node/current/?utm_campaign=devrel&utm_source=github&utm_medium=referral&utm_content=mean.stack.example&utm_term=learning.fuel)
 
 ## License
 

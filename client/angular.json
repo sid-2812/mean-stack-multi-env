@@ -124,5 +124,8 @@
     "@schematics/angular:resolver": {
       "typeSeparator": "."
     }
+  },
+  "cli": {
+    "analytics": "f90d906d-6460-4954-8d14-e2d64327b186"
   }
 }

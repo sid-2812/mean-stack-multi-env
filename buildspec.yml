@@ -1,4 +1,5 @@
 version: 0.2
+
 phases:
   pre_build:
     commands:
@@ -10,18 +11,19 @@ phases:
 
   build:
     commands:
-      - echo Building the Docker images...
+      - echo Building frontend image...
       - docker build -t $FRONTEND_REPO:$COMMIT_HASH ./client
+      - echo Building backend image...
       - docker build -t $BACKEND_REPO:$COMMIT_HASH ./server
 
   post_build:
     commands:
-      - echo Pushing the Docker images to Amazon ECR...
+      - echo Pushing images to ECR...
       - docker push $FRONTEND_REPO:$COMMIT_HASH
       - docker push $BACKEND_REPO:$COMMIT_HASH
       - echo Creating imagedefinitions.json...
-      - printf '[{"name":"mean-frontend","imageUri":"%s"},{"name":"mean-backend","imageUri":"%s"}]' $FRONTEND_REPO:$COMMIT_HASH $BACKEND_REPO:$COMMIT_HASH > imagedefinitions.json
+      - printf '[{"name":"frontend","imageUri":"%s"},{"name":"backend","imageUri":"%s"}]' $FRONTEND_REPO:$COMMIT_HASH $BACKEND_REPO:$COMMIT_HASH > imagedefinitions.json
 
-aritfacts:
+artifacts:
   files:
     - imagedefinitions.json

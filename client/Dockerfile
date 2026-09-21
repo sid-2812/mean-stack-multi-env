@@ -2,9 +2,7 @@ FROM node:24-slim AS build
 
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
-
-# Install dependencies and copy them to the container
-RUN npm install
+RUN npm ci --no-audit --no-fund
 COPY . .
 
 # Build the Angular application for production

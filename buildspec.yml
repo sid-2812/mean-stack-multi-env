@@ -1,42 +1,42 @@
-version: 0.2
+  version: 0.2
 
-phases:
-  pre_build:
-    commands:
-      - echo "Logging in to Amazon ECR..."
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 890439389777.dkr.ecr.ap-south-1.amazonaws.com
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - FRONTEND_REPO=890439389777.dkr.ecr.ap-south-1.amazonaws.com/mean-frontend
-      - BACKEND_REPO=890439389777.dkr.ecr.ap-south-1.amazonaws.com/mean-backend
+  phases:
+    pre_build:
+      commands:
+        - echo "Logging in to Amazon ECR..."
+        - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 890439389777.dkr.ecr.ap-south-1.amazonaws.com
+        - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+        - FRONTEND_REPO=890439389777.dkr.ecr.ap-south-1.amazonaws.com/mean-frontend
+        - BACKEND_REPO=890439389777.dkr.ecr.ap-south-1.amazonaws.com/mean-backend
 
-  build:
-    commands:
-      - echo "Building frontend image..."
-      - docker build -t $FRONTEND_REPO:$COMMIT_HASH ./client
-      - echo "Building backend image..."
-      - docker build -t $BACKEND_REPO:$COMMIT_HASH ./server
-      - echo "Scanning frontend image with Trivy..."
-      - docker run --rm \
-          -v /var/run/docker.sock:/var/run/docker.sock \
-          -v "$CODEBUILD_SRC_DIR:/.trivycache:/root/.cache/trivy" \
-          public.ecr.aws/aquasecurity/trivy:0.74.0 \
-          image --severity HIGH,CRITICAL --exit-code 0 $FRONTEND_REPO:$COMMIT_HASH
-      - echo "Scanning backend image with Trivy..."
-      - docker run --rm \
-          -v /var/run/docker.sock:/var/run/docker.sock \
-          -v "$CODEBUILD_SRC_DIR:/.trivycache:/root/.cache/trivy" \
-          public.ecr.aws/aquasecurity/trivy:0.74.0 \
-          image --severity HIGH,CRITICAL --exit-code 0 $BACKEND_REPO:$COMMIT_HASH
+    build:
+      commands:
+        - echo "Building frontend image..."
+        - docker build -t $FRONTEND_REPO:$COMMIT_HASH ./client
+        - echo "Building backend image..."
+        - docker build -t $BACKEND_REPO:$COMMIT_HASH ./server
+        - echo "Scanning frontend image with Trivy..."
+        - docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$CODEBUILD_SRC_DIR:/.trivycache:/root/.cache/trivy" \
+            public.ecr.aws/aquasecurity/trivy:0.74.0 \
+            image --severity HIGH,CRITICAL --exit-code 0 $FRONTEND_REPO:$COMMIT_HASH
+        - echo "Scanning backend image with Trivy..."
+        - docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$CODEBUILD_SRC_DIR:/.trivycache:/root/.cache/trivy" \
+            public.ecr.aws/aquasecurity/trivy:0.74.0 \
+            image --severity HIGH,CRITICAL --exit-code 0 $BACKEND_REPO:$COMMIT_HASH
 
-  post_build:
-    commands:
-      - echo "Pushing frontend image..."
-      - docker push $FRONTEND_REPO:$COMMIT_HASH
-      - echo "Pushing backend image..."
-      - docker push $BACKEND_REPO:$COMMIT_HASH
-      - echo "Creating imagedefinitions.json..."
-      - printf '[{"name":"frontend","imageUri":"%s"},{"name":"backend","imageUri":"%s"}]' "$FRONTEND_REPO:$COMMIT_HASH" "$BACKEND_REPO:$COMMIT_HASH" > imagedefinitions.json
+    post_build:
+      commands:
+        - echo "Pushing frontend image..."
+        - docker push $FRONTEND_REPO:$COMMIT_HASH
+        - echo "Pushing backend image..."
+        - docker push $BACKEND_REPO:$COMMIT_HASH
+        - echo "Creating imagedefinitions.json..."
+        - printf '[{"name":"frontend","imageUri":"%s"},{"name":"backend","imageUri":"%s"}]' "$FRONTEND_REPO:$COMMIT_HASH" "$BACKEND_REPO:$COMMIT_HASH" > imagedefinitions.json
 
-artifacts:
-  files:
-    - imagedefinitions.json
+  artifacts:
+    files:
+      - imagedefinitions.json

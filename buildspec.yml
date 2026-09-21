@@ -15,6 +15,10 @@ phases:
       - docker build -t $FRONTEND_REPO:$COMMIT_HASH ./client
       - echo "Building backend image..."
       - docker build -t $BACKEND_REPO:$COMMIT_HASH ./server
+      - echo "Scanning frontend image with Trivy..."
+      - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock public.ecr.aws/aquasecurity/trivy:0.74.0 image --severity HIGH,CRITICAL --exit-code 0 $FRONTEND_REPO:$COMMIT_HASH
+      - echo "Scanning backend image with Trivy..."     
+      - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock public.ecr.aws/aquasecurity/trivy:0.74.0 image --severity HIGH,CRITICAL --exit-code 0 $BACKEND_REPO:$COMMIT_HASH
 
   post_build:
     commands:
